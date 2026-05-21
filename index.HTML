@@ -258,7 +258,16 @@
   </div>     
 
   <script> 
-  
+window.onerror = function(message, source, lineno, colno, error) {
+    alert("Galti Mili!\nMessage: " + message + "\nLine: " + lineno);
+    return true;
+};
+
+
+
+
+
+
        
 //data array
  const medicines = [ { name: "Paracetamol", category: "Fever", shop: "City Pharma", price: "₹20", },
