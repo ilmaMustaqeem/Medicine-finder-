@@ -1,0 +1,295 @@
+<! DOCTYPE html>
+  <html lang="en">
+  <head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,intial-scale=1.0">
+  <title> Medicine Finder -Live Search Web </title>
+
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+   }
+ #header {
+   background: #784a2b;
+   color: white;
+   padding: 10px;
+   display: flex;
+   justify-content: space-between;
+  }
+  .nav button {
+   background: none;
+   color: white;
+   border: 2px solid white;
+   padding: 5px;
+   border-radius: 5px;
+   margin: 5px;
+   }
+  .hidden {
+    display: none;
+    }
+#about-view {
+   background: none;
+   border: 4px solid #91644e;
+   border-radius: 20px;
+   width: 300px;
+   padding: 15px;
+   margin: 40px;
+   text-align: center;
+   
+  }
+
+ .main {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   }
+   
+
+
+  .container {
+   min-height: 100vh;
+   box-sizing: border-box;
+ }
+ #home-view {
+   margin: 0 20px;
+   }
+ .hea {
+   margin: 20px;
+   font-size: 30px;
+ }
+
+ .search-container {
+   margin-top: 40px;
+   }
+  input {
+   font-size: 20px;
+   border: 2px solid black;
+   padding: 10px;
+   border-radius: 8px;
+   color: black;
+ }
+
+
+ .highlighted {
+    color: #91644e;
+    font-weight: bold;
+    font-family: Tahoma, verdana, sans-serif;
+ }
+ #result-view {
+   display: none;
+   }
+  .disease-grid{
+   display: flex;
+    justify-content: center;
+   flex-wrap: wrap;
+    gap: 20px;
+   }
+  .disease-card {
+    gap: 20px;
+    background: #91644e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 20px 30px;
+    font-size: 20px;
+  }
+
+.back-btn {
+  background: #91644e;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+ #result-heading {
+   margin-top: 20px;
+ }
+ .med-card {
+   background: white;
+   color: gray;
+   border: 3px solid #784a2b;
+   border-radius: 10px;
+   padding: 10px;
+   margin: 15px;
+   width: 300px;
+ }
+ 
+
+
+
+ #footer {
+   background: #754834;
+   color: white;
+   padding: 20px;
+   text-align: center;
+ }
+ img { 
+   width: 50px;
+   padding: 10px;
+   
+ }
+
+   
+  @media(min-width:768px) {
+    #header {
+      padding: 15px;
+      font-size: 30px
+      }
+    .disease-card {
+      width: 350px;
+      font-size: 30px;
+      }
+     .med-card {
+       width: 450px;
+       font-size: 30px;
+       border: 6px solid #784a2b;
+       }  
+#footer {
+    padding: 30px;
+    font-size: 30px;
+  }
+    img {
+      width: 65px;
+      }
+    .nav button {
+      font-size: 28px;
+      }
+    }
+
+ @media(min-width: 1280px) {
+   #header{
+     padding: 40px;
+     font-size: 50px;
+       }
+   input {
+     margin-top: 80px;
+     width: 600px;
+     font-size: 40px;
+     }
+   img {
+     width: 80px;
+     }
+   .disease-card {
+     width: 500px;
+     font-size: 40px;
+   }
+   .nav button {
+     border: 3px solid white;
+     padding: 10px;
+     font-size: 35px;
+     margin: 10px;
+     border-radius: 10px;
+   }   
+   #about-view {
+     width: 600px;
+     border: 8px solid #91644e;
+     font-size: 40px;
+     padding: 15px;
+     margin: 80px;
+     }
+   }
+</style>
+  </head>
+
+  <body>
+    <div class="container">
+  
+  <div id="header" >
+    <h1>Medicine Finder</h1>
+    <div class="nav">
+    <button  onclick="showHome()"> Home </button>
+    <button onclick="showAbout()">About Me </button>
+      </div>
+    </div>     
+    <!-- about-->
+    <div id="about-view" class="hidden">
+      <p> My name is Ilma Mustaqeem, and I am from Saharanpur. I have completed 12th class. My teachers introduced me to  Coding and  started my Coding Course in 2024. Before this, I didn't know much about coding, but I started learning, I really liked it. I have completed HTML CSS JavaScript, and now I am learning React. Now I want to become Web Developer.
+      Thanks to Codeyogi ❤️</p>
+      
+      
+      </div>
+    
+
+              <!--main area-->
+    <div class="main">
+    <div id="search-box" class="search-container">
+        <input type="text" id="userInput" placeholder="Find medicine...." oninput="handleLiveSearch()">
+    </div>
+
+    <!-- Home View: Disease Buttons -->
+    <div id="home-view">
+        <h3 class="hea">Select by Disease:</h3>
+        <div class="disease-grid">
+            <button class="disease-card" onclick="filterByDisease('Fever')"> Fever</button>
+ <button class="disease-card" onclick="filterByDisease('Cold')"> Cold</button>
+   <button class="disease-card" onclick="filterByDisease('Body Pain')"> Body Pain</button>
+            <button class="disease-card" onclick="filterByDisease('Allergy')"> Allergy</button>
+   <button class="disease-card" onclick="filterByDisease('diabetes')"> Diabetes </button>
+           <button class="disease-card" onclick="filterByDisease('bloodpreesure')"> Blood Pressure</button>
+   <button class="disease-card" onclick="filterByDisease('thyroid')"> Thyroid</button>
+       <button class="disease-card" onclick="filterByDisease('heartproblem')"> Heart Problem </button>
+        </div>
+    </div>
+  
+
+    <!-- Result View: Medicines List -->
+    <div id="result-view">
+        <button class="back-btn" onclick="goBack()">← Back to Categories</button>
+        <h2 id="result-heading">Results</h2>
+        <div id="med-list">
+          <div class="med-card">
+            </div>
+          <!-- medicine view -->
+        </div>
+    </div>
+</div>
+  </div>
+<div id="footer" >
+  <div class="pic">
+   <img src="https://deepakdistributors.com/wp-content/uploads/2024/07/pradhan-mantri-jan-aushadhi-logo-01-1.png" alt="image"/>
+    </div>
+  <p>Medicine Finder </p>
+  <p> © 2026 All Rights Reserved </p>
+  <p> Designed by Ilma Mustaqeem. </p>
+  </div>     
+
+  <script> 
+  
+       
+//data array
+ const medicines = [ { name: "Paracetamol", category: "Fever", shop: "City Pharma", price: "₹20", },
+        { name: "Dolo 650", 
+          category: "Fever", 
+          shop: "Apex Meds",
+          price: "₹30" },
+   { name: "Calpol", 
+     category: "Fever", 
+     shop: "City Pharma",
+     price: "₹85",  },
+        { name: "Paracip 500",      category: "Fever", 
+          shop: "City Pharma",  price: "₹40",  },
+        { name: "Saridon",  category: "Fever", 
+          shop: "City Pharma", price: "₹15" },
+        { name: "Dolo 500", category: "Fever", shop: "Apex Meds", price: "₹20", }
+    ];
+
+    // DOM Elements ko variables mein save karna
+    const homeView = document.getElementById('home-view');
+    const resultView = document.getElementById('result-view');
+ const medList = document.getElementById('med-list');
+    const resultHeading = document.getElementById('result-heading');
+    const userInput = document.getElementById('userInput');
+ const aboutView = document.getElementById('about-view');
+ const searchBox = document.getElementById('search-box');
+ // show home 
+ function showHome() {
+  </script>
+</body>
+</html>
+                                                                                        
+
+                                                                                                                                                                                                          
